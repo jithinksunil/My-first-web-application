@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>admin profile</h1>
+    <% if(details){
+
+        %><table width="50%" rules="all" style="border: 1px solid black;">
+            <tr>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Age</td>
+                <td>Password</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <% details.forEach((item)=>{
+                %><tr>
+                    <td><%= item.name %></td>
+                    <td><%= item.email %></td>
+                    <td><%= item.age %></td>
+                    <td><%= item.password %></td>
+                    <td><button><a href="/deleteUser?id=<%=item._id%>">Delete</a></button></td>
+                    <td><button><a href="/updateUserAction?id=<%=item._id%>">Update</a></button></td>
+                </tr><%
+                
+            }) 
+            %>
+            
+        </table><%
+    }else{
+        %><%
+    }
+    %>
+    <form action="/searchUser" method="post">
+        <input type="text" placeholder="enter user email address" name="search">
+        <input type="submit" value="Search">
+        <button><a href="/clearSearch">ClearSearch</a></button>
+    </form>
+    <button><a href="/addUserPage">Add User</a></button>
+    <button><a href="/adminLogout">Log Out</a></button>
+</body>
+</html>
